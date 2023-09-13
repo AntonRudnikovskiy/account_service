@@ -34,7 +34,7 @@ public class BalanceService {
     @Transactional
     public BalanceDto updateBalance(UpdateBalanceDto updateBalanceDto, Long balanceId) {
         validateOwnership(updateBalanceDto, balanceId);
-        Balance balance = balanceExistsValidation(updateBalanceDto.getId());
+       Balance balance = balanceExistsValidation(updateBalanceDto.getId());
 
         BigDecimal currentBalance = balance.getCurrentBalance();
         BigDecimal deposit = updateBalanceDto.getDeposit();
@@ -43,10 +43,10 @@ public class BalanceService {
 
         balance.setCurrentBalance(updatedBalance);
 
-        Balance savedBalance = balanceRepository.save(balance);
-        log.info(balance + " is updated");
+          Balance savedBalance = balanceRepository.save(balance);
+     //   log.info(" is updated {0}" + balance);
 
-        return balanceMapper.toDto(savedBalance);
+       return balanceMapper.toDto(savedBalance);
     }
 
     private void validateOwnership(UpdateBalanceDto updateBalanceDto, Long balanceId) {

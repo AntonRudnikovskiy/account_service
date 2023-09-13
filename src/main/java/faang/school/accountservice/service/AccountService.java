@@ -26,12 +26,12 @@ public class AccountService {
     @Transactional
     public ResponseAccountDto open(CreateAccountDto createAccountDto) {
         Account account = accountRepository.save(accountMapper.createDtoToEntity(createAccountDto));
-//        account.setBalance(Balance.builder()
-//                .account(account)
-//                        .currentBalance(BigDecimal.ZERO)
-//                .authorizationBalance(BigDecimal.ZERO)
-//                .currentBalance(BigDecimal.ZERO)
-//                .build());
+       account.setBalance(Balance.builder()
+               .account(account)
+                      .currentBalance(BigDecimal.ZERO)
+               .authorizationBalance(BigDecimal.ZERO)
+               .currentBalance(BigDecimal.ZERO)
+                .build());
         log.info("Created Account. Id: {}", account.getId());
         return accountMapper.entityToResponseDto(account);
     }
